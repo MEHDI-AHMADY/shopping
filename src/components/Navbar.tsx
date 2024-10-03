@@ -1,7 +1,10 @@
 import { AiOutlineUser } from "react-icons/ai";
 import { FiShoppingCart } from "react-icons/fi";
+import { useAppSelector } from "../redux/hooks";
 
 export default function Navbar() {
+  const count = useAppSelector(state => state.cart.length);
+
   return (
     <div className="sticky top-0 pt-4 bg-white">
       <div className="container">
@@ -24,7 +27,7 @@ export default function Navbar() {
             <div className="text-3xl relative cursor-pointer text-gray-500">
               <FiShoppingCart />
               <div className="absolute -top-3 -right-2 bg-red-500 w-5 h-5 rounded-full text-white text-sm flex items-center justify-center">
-                0
+                {count}
               </div>
             </div>
           </div>
