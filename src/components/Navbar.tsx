@@ -9,7 +9,7 @@ export default function Navbar() {
     <div className="sticky top-0 pt-4 bg-white">
       <div className="container">
         <div className="flex justify-between items-center">
-          <h1 className="text-xl font-bold cursor-pointer">Shopping</h1>
+          <h1 className="text-xl font-bold cursor-pointer">Books</h1>
 
           <div className="flex gap-4 md:gap-8 items-center">
             <div className="hidden md:flex items-center gap-3">
