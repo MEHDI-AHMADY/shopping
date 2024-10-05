@@ -39,9 +39,9 @@ const Home = () => {
     }
   }, [allBooks]);
 
-  if (!booksWithQuantity.length) {
-    return null;
-  }
+  // if (!booksWithQuantity.length) {
+  //   return null;
+  // }
 
   const addBookToCartHandler = (bookID: number) => {
     const mainBook = booksWithQuantity.find((book) => book.id === bookID);
@@ -70,11 +70,13 @@ const Home = () => {
           ))}
         </div>
 
-        <Pagination
-          items={booksWithQuantity}
-          itemsCount={8}
-          setCurrentBooks={setCurrentBooks}
-        />
+        {booksWithQuantity.length > 0 && (
+          <Pagination
+            items={booksWithQuantity}
+            itemsCount={8}
+            setCurrentBooks={setCurrentBooks}
+          />
+        )}
       </div>
 
       {isError && (
@@ -85,7 +87,7 @@ const Home = () => {
         </div>
       )}
       {isPending && (
-        <div className="errorOrPending">
+        <div className="errorOrPending min-h-[500px]">
           <h1 className="text-center text-3xl bg-gradient-to-r from-red-500 via-red-700 to-red-950 bg-clip-text text-transparent">
             Loading...
           </h1>

@@ -14,6 +14,7 @@ export default function Book(props: BookProps) {
         src={randomImage}
         alt="book"
         className="w-full h-48 object-cover rounded-md"
+        loading="lazy"
       />
 
       <div className="relative min-h-64 p-4 mt-5">
