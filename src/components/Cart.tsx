@@ -2,6 +2,7 @@ import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import CartBook from "./CartBook";
 import { IoClose } from "react-icons/io5";
 import { addToCart, removeBook } from "../redux/slice/bookSlice";
+import { useEffect, useState } from "react";
 
 type CartProps = {
   showCart: boolean;
@@ -10,6 +11,7 @@ type CartProps = {
 
 export default function Cart({ showCart, setShowCart }: CartProps) {
   const books = useAppSelector((state) => state.cart);
+  const [pricesSum, setPricesSum] = useState<number>(0);
 
   const dispatch = useAppDispatch();
 
@@ -21,6 +23,23 @@ export default function Cart({ showCart, setShowCart }: CartProps) {
   const removeBookFromCart = (bookID: number) => {
     dispatch(removeBook(bookID));
   };
+
+  useEffect(() => {
+    const calculateSumOfBookPrices = (): number => {
+      let price: number = 0;
+      if (books) {
+        for (let book of books) {
+          if (book.quantity > 1) {
+            price += book.price * book.quantity;
+          }else{
+            price += book.price;
+          }
+        }
+      }
+      return price;
+    };
+    setPricesSum(calculateSumOfBookPrices());
+  }, [books]);
 
   return (
     <div
@@ -44,6 +63,7 @@ export default function Cart({ showCart, setShowCart }: CartProps) {
                   addMoreOfTheSameBook={addMoreOfTheSameBook}
                 />
               ))}
+            <div className="mt-5 text-2xl">Total Price : {pricesSum}$</div>
           </div>
         ) : (
           <div className="text-center text-2xl ">No Book has added yet!</div>

@@ -12,6 +12,7 @@ export default function CartBook(props: CartBookProps) {
     quantity,
     title,
     authors,
+    price,
     addMoreOfTheSameBook,
     removeBookFromCart,
   } = props;
@@ -25,6 +26,7 @@ export default function CartBook(props: CartBookProps) {
       />
       <h3 className="w-40 line-clamp-2">{title}</h3>
       <div className="hidden sm:block">{authors[0].name}</div>
+      <div className="p-2 rounded-full bg-green-200">{price}$</div>
       <div className="flex items-center gap-2 sm:gap-5">
         <button
           onClick={() => addMoreOfTheSameBook(id)}

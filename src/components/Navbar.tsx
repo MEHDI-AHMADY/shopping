@@ -9,7 +9,7 @@ export default function Navbar() {
   const [showCart, setShowCart] = useState<boolean>(false);
 
   return (
-    <div className="sticky top-0 pt-4 z-50 bg-white">
+    <header className="sticky top-0 pt-4 z-50 bg-white">
       <div className="container">
         <div className="flex justify-between items-center">
           <h1 className="text-xl font-bold cursor-pointer">Books</h1>
@@ -43,6 +43,6 @@ export default function Navbar() {
       <div className="border-b border-gray-200 pt-4" />
 
       <Cart showCart={showCart} setShowCart={setShowCart}/>
-    </div>
+    </header>
   );
 }

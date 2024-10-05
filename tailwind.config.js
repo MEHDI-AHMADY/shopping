@@ -14,7 +14,6 @@ export default {
     },
     fontFamily : {
       primary : "Poppins",
-      secondary : "Pacifico"
     }
   },
   plugins: [],

@@ -5,4 +5,5 @@ export interface Book {
   price: number;
   downloadCount: number;
   quantity: number;
+  image: string;
 }

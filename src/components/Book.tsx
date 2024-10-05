@@ -1,30 +1,17 @@
 import { Book as BookType } from "../types";
-import book1 from "/images/book.jpg";
-import book2 from "/images/book2.jpg";
-import book3 from "/images/book3.jpg";
-import book4 from "/images/book4.jpg";
 
 type BookProps = BookType & {
   addBookToCart: (bookID: number) => void;
+  randomImage: string
 };
 
 export default function Book(props: BookProps) {
-  const { title, authors, id, addBookToCart } = props;
-
-  const randomImage = () => {
-    const images = [book1, book2, book3, book4];
-    return images[Math.floor(Math.random() * images.length)];
-  };
-
-  const randomPrice = () => {
-    const prices = [20, 30, 40, 10, 26, 42];
-    return prices[Math.floor(Math.random() * prices.length)];
-  };
+  const { title, authors, id, addBookToCart, price, randomImage } = props;
 
   return (
     <div className="flex flex-col gap-2 shadow-md rounded-md">
       <img
-        src={randomImage()}
+        src={randomImage}
         alt="book"
         className="w-full h-48 object-cover rounded-md"
       />
@@ -41,7 +28,7 @@ export default function Book(props: BookProps) {
 
         <div className="mt-4 flex gap-2 items-center">
           <span className="bg-lime-300 rounded-sm p-1 text-lg">Price:</span>
-          <span>{randomPrice()}$</span>
+          <span>{price}$</span>
         </div>
         <button
           onClick={() => addBookToCart(id)}
