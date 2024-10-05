@@ -18,7 +18,7 @@ export default function CartBook(props: CartBookProps) {
   } = props;
 
   return (
-    <div className="p-4 shadow-md rounded-md bg-white flex items-center justify-between">
+    <div className="p-4 shadow-md rounded-md bg-white grid grid-cols-4 sm:grid-cols-6 items-center gap-10">
       <img
         src={book1}
         alt="book"
@@ -26,17 +26,17 @@ export default function CartBook(props: CartBookProps) {
       />
       <h3 className="w-40 line-clamp-2">{title}</h3>
       <div className="hidden sm:block">{authors[0].name}</div>
-      <div className="p-2 rounded-full bg-green-200">{price}$</div>
-      <div className="flex items-center gap-2 sm:gap-5">
+      <div className="p-2 max-w-11 rounded-full bg-green-200">{price}$</div>
+      <div className="flex items-center gap-1 md:gap-5">
         <button
           onClick={() => addMoreOfTheSameBook(id)}
-          className="w-10 h-10 rounded-full p-3 bg-green-600 flex items-center justify-center text-white"
+          className="w-10 h-10 rounded-full p-4 bg-green-600 flex items-center justify-center text-white"
         >
           +
         </button>
         <button
           onClick={() => removeBookFromCart(id)}
-          className="w-10 h-10 rounded-full p-3 bg-red-600 flex items-center justify-center text-white"
+          className="w-10 h-10 rounded-full p-4 bg-red-600 flex items-center justify-center text-white"
         >
           -
         </button>
