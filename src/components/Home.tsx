@@ -1,48 +1,34 @@
-import { useEffect, useState } from "react";
-import { useAppDispatch } from "../redux/hooks";
-import { setBooks } from "../redux/slice/bookSlice";
+import { useState } from "react";
 import { useGetAllBooks } from "../services";
+import { Book as BookType } from "../types";
 import Book from "./Book";
 import Pagination from "./Pagination";
 
 const Home = () => {
-  const dispatch = useAppDispatch();
 
   const { data: allBooks, isPending, isError } = useGetAllBooks();
+  const [currentBooks, setCurrentBooks] = useState<BookType[]>([]);
 
-  useEffect(() => {
-    if (allBooks) dispatch(setBooks(allBooks));
-  }, []);
-
-  const [currentPage, setCurrentPage] = useState<number>(1);
-  const booksPerPage = 6;
-
-  // pagination logic
-  const indexOfLastBook: number = currentPage * booksPerPage;
-  const indexOfFirstBook: number = indexOfLastBook - booksPerPage;
-  const currentBooks = allBooks?.slice(indexOfFirstBook, indexOfLastBook);
-
-  if (!allBooks?.length) return;
-
-  const pagesCount: number = Math.ceil(allBooks.length / booksPerPage);
-  const pagesNumbers: number[] = Array.from(Array(pagesCount).keys());
+  if (!allBooks?.length) return null;
 
   return (
-    <>
+    <div>
       <img
         src="./images/bookBanner.jpg"
         alt="banner"
         className="w-full h-80 md:h-[540px] object-cover"
       />
-      <div className="container my-10">
-        {currentBooks?.map((book) => (
-          <Book key={book.id} {...book} />
-        ))}
+      <div className="container my-10 flex flex-col gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 lg:gap-5">
+          {currentBooks?.map((book) => (
+            <Book key={book.id} {...book} />
+          ))}
+        </div>
 
         <Pagination
-          pagesNumbers={pagesNumbers}
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
+          items={allBooks}
+          itemsCount={8}
+          setCurrentBooks={setCurrentBooks}
         />
       </div>
 
@@ -60,7 +46,7 @@ const Home = () => {
           </h1>
         </div>
       )}
-    </>
+    </div>
   );
 };
 
