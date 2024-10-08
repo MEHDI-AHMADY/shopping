@@ -43,8 +43,8 @@ export default function Cart({ showCart, setShowCart }: CartProps) {
 
   return (
     <div
-      className={`fixed top-0 right-0 left-0 h-96 shadow-xl bg-gray-200 overflow-y-auto transition-transform duration-200 ${
-        showCart ? "translate-y-0" : "-translate-y-96"
+      className={`fixed top-0 right-0 left-0 h-[420px] shadow-xl bg-gray-200 dark:bg-slate-900 overflow-y-auto transition-transform duration-200 ${
+        showCart ? "translate-y-0" : "-translate-y-[420px]"
       }`}
     >
       <div className="p-5 flex flex-col gap-4">

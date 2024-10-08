@@ -49,10 +49,10 @@ const Home = () => {
       <img
         src="./images/bookBanner.jpg"
         alt="banner"
-        className="w-full h-80 md:h-[540px] object-cover"
+        className="w-full h-52 md:h-[540px] object-cover"
       />
       <div className="container my-10 flex flex-col gap-10">
-        <h1 className="text-center text-4xl bg-green-600 p-2 text-white rounded-md">
+        <h1 className="text-center text-4xl bg-green-600 dark:bg-slate-600 dark:text-white/70 p-2 text-white rounded-md">
           All Books
         </h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 lg:gap-5">

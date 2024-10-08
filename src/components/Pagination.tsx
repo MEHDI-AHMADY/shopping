@@ -36,7 +36,7 @@ export default function Pagination({
           <Link
             to={`/${index + 1}`}
             className={`px-5 py-2 rounded-lg text-xl ${
-              index + 1 === currentPage ? "bg-green-500" : "bg-green-300"
+              index + 1 === currentPage ? "bg-green-500 dark:bg-slate-700" : "bg-green-300 dark:bg-slate-400"
             }`}
             key={index}
           >

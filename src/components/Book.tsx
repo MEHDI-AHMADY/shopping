@@ -24,16 +24,16 @@ export default function Book(props: BookProps) {
         </div>
         <div className="flex items-start gap-3 mt-4">
           <h3 className="bg-lime-800 p-1 rounded-sm text-white">Author:</h3>
-          <span>{authors[0].name}</span>
+          <span>{authors[0]?.name}</span>
         </div>
 
         <div className="mt-4 flex gap-2 items-center">
-          <span className="bg-lime-300 rounded-sm p-1 text-lg">Price:</span>
+          <span className="bg-lime-300 dark:bg-lime-500 rounded-sm p-1 text-lg">Price:</span>
           <span>{price}$</span>
         </div>
         <button
           onClick={() => addBookToCart(id)}
-          className="absolute bottom-4 right-2 left-2 mt-4 py-2 px-4 bg-green-300 rounded-md hover:scale-95 transition-transform duration-200"
+          className="absolute bottom-4 right-2 left-2 mt-4 py-2 px-4 bg-green-300 dark:bg-slate-600 rounded-md hover:scale-95 transition-transform duration-200"
         >
           Add To Cart
         </button>
