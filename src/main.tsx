@@ -6,10 +6,21 @@ import { store } from "./redux/store";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ThemeContextProvider from "./context/ThemeContext";
+import BookPage from "./pages/BookPage";
+import Home from "./components/Home";
+import NotFound from "./components/NotFound";
 
 const router = createBrowserRouter([
-  { path: "/", element: <App /> },
-  { path: "/:page", element: <App /> },
+  {
+    path: "/",
+    element: <App />,
+    children: [
+      {path : "/" , element : <Home />},
+      { path: "/books/:book", element: <BookPage /> },
+      { path: "/:page", element: <Home /> },
+    ],
+  },
+  { path: "*", element: <NotFound /> },
 ]);
 
 const queryClient = new QueryClient();

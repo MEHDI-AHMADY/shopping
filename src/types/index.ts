@@ -3,7 +3,7 @@ export interface Book {
   title: string;
   authors: [{ name: string }];
   price: number;
-  downloadCount: number;
+  download_count: number;
   quantity: number;
   image: string;
 }

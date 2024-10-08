@@ -4,7 +4,7 @@ import book2 from "/images/book2.jpg";
 import book3 from "/images/book3.jpg";
 import book4 from "/images/book4.jpg";
 import { useAppDispatch } from "../redux/hooks";
-import { addToCart } from "../redux/slice/bookSlice";
+import { addToCart } from "../redux/slice/cartSlice";
 import { useGetAllBooks } from "../services";
 import { Book as BookType } from "../types";
 import Book from "./Book";
