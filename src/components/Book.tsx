@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { Link } from "react-router-dom";
 import { Book as BookType } from "../types";
 
@@ -6,7 +7,7 @@ type BookProps = BookType & {
   randomImage: string;
 };
 
-export default function Book(props: BookProps) {
+const Book = memo((props: BookProps) => {
   const { title, authors, id, addBookToCart, price, randomImage } = props;
   const titleSlug = title.trim().replace(/\s+/g, "-");
 
@@ -46,4 +47,5 @@ export default function Book(props: BookProps) {
       </div>
     </div>
   );
-}
+})
+export default Book

@@ -8,7 +8,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ThemeContextProvider from "./context/ThemeContext";
 import BookPage from "./pages/BookPage";
 import Home from "./components/Home";
-import NotFound from "./components/NotFound";
 
 const router = createBrowserRouter([
   {
@@ -20,7 +19,6 @@ const router = createBrowserRouter([
       { path: "/:page", element: <Home /> },
     ],
   },
-  { path: "*", element: <NotFound /> },
 ]);
 
 const queryClient = new QueryClient();

@@ -1,8 +1,4 @@
-import { useEffect, useState } from "react";
-import book1 from "/images/book.jpg";
-import book2 from "/images/book2.jpg";
-import book3 from "/images/book3.jpg";
-import book4 from "/images/book4.jpg";
+import { useCallback, useEffect, useState } from "react";
 import { useAppDispatch } from "../redux/hooks";
 import { addToCart } from "../redux/slice/cartSlice";
 import { useGetAllBooks } from "../services";
@@ -10,24 +6,32 @@ import { Book as BookType } from "../types";
 import Book from "./Book";
 import Pagination from "./Pagination";
 
+const bookImages = [
+  "/images/book.jpg",
+  "/images/book2.jpg",
+  "/images/book3.jpg",
+  "/images/book4.jpg",
+];
+
+const prices = [20, 30, 40, 10, 26, 42];
+
 const Home = () => {
   const { data: allBooks, isPending, isError } = useGetAllBooks();
   const [currentBooks, setCurrentBooks] = useState<BookType[]>([]);
   const [booksWithQuantity, setBooksWithQuantity] = useState<BookType[]>([]);
   const dispatch = useAppDispatch();
 
+  const randomPrice = useCallback(
+    () => prices[Math.floor(Math.random() * prices.length)],
+    []
+  );
+  const randomImage = useCallback(
+    () => bookImages[Math.floor(Math.random() * bookImages.length)],
+    []
+  );
+
   useEffect(() => {
     if (allBooks && allBooks.length > 0) {
-      const randomPrice = () => {
-        const prices = [20, 30, 40, 10, 26, 42];
-        return prices[Math.floor(Math.random() * prices.length)];
-      };
-
-      const randomImage = () => {
-        const images = [book1, book2, book3, book4];
-        return images[Math.floor(Math.random() * images.length)];
-      };
-
       const newBooksWithQuantity = allBooks.map((book) => ({
         ...book,
         quantity: 0,
@@ -37,12 +41,17 @@ const Home = () => {
 
       setBooksWithQuantity(newBooksWithQuantity);
     }
-  }, [allBooks]);
+  }, [allBooks, randomPrice, randomImage]);
 
-  const addBookToCartHandler = (bookID: number) => {
-    const mainBook = booksWithQuantity.find((book) => book.id === bookID);
-    dispatch(addToCart(mainBook!));
-  };
+  const addBookToCartHandler = useCallback(
+    (bookID: number) => {
+      const mainBook = booksWithQuantity.find((book) => book.id === bookID);
+      if (mainBook) {
+        dispatch(addToCart(mainBook));
+      }
+    },
+    [booksWithQuantity, dispatch]
+  );
 
   return (
     <main>
