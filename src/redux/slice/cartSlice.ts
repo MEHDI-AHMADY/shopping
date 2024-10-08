@@ -4,7 +4,7 @@ import { Book } from "../../types";
 const initialState: Book[] = [];
 
 export const slice = createSlice({
-  name: "books",
+  name: "cart",
   initialState,
   reducers: {
     addToCart: (state, action: PayloadAction<Book>) => {
@@ -29,13 +29,8 @@ export const slice = createSlice({
         );
       }
     },
-    setBooks: (state, action: PayloadAction<Book[]>) => {
-      let newState: Book[] = [...state];
-      newState = action.payload;
-      return newState;
-    },
   },
 });
 
-export const { addToCart, removeBook, setBooks } = slice.actions;
+export const { addToCart, removeBook } = slice.actions;
 export default slice.reducer;

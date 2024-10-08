@@ -1,21 +1,25 @@
+import { Link } from "react-router-dom";
 import { Book as BookType } from "../types";
 
 type BookProps = BookType & {
   addBookToCart: (bookID: number) => void;
-  randomImage: string
+  randomImage: string;
 };
 
 export default function Book(props: BookProps) {
   const { title, authors, id, addBookToCart, price, randomImage } = props;
+  const titleSlug = title.trim().replace(/\s+/g, "-");
 
   return (
     <div className="flex flex-col gap-2 shadow-md rounded-md">
-      <img
-        src={randomImage}
-        alt="book"
-        className="w-full h-48 object-cover rounded-md"
-        loading="lazy"
-      />
+      <Link to={`/books/${titleSlug}`}>
+        <img
+          src={randomImage}
+          alt="book"
+          className="w-full h-48 object-cover rounded-md"
+          loading="lazy"
+        />
+      </Link>
 
       <div className="relative min-h-64 p-4 mt-5">
         <div className="flex items-start gap-3">
@@ -28,7 +32,9 @@ export default function Book(props: BookProps) {
         </div>
 
         <div className="mt-4 flex gap-2 items-center">
-          <span className="bg-lime-300 dark:bg-lime-500 rounded-sm p-1 text-lg">Price:</span>
+          <span className="bg-lime-300 dark:bg-lime-500 rounded-sm p-1 text-lg">
+            Price:
+          </span>
           <span>{price}$</span>
         </div>
         <button

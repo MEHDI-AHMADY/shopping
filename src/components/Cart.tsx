@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import CartBook from "./CartBook";
 import { IoClose } from "react-icons/io5";
-import { addToCart, removeBook } from "../redux/slice/bookSlice";
+import { addToCart, removeBook } from "../redux/slice/cartSlice";
 import { useEffect, useState } from "react";
 
 type CartProps = {
